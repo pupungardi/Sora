@@ -1,0 +1,67 @@
+name: Sora
+options:
+  bundleIdPrefix: app.sora
+  deploymentTarget:
+    iOS: "16.1"
+  createIntermediateGroups: true
+
+settings:
+  base:
+    MARKETING_VERSION: "0.1.0"
+    CURRENT_PROJECT_VERSION: "1"
+    SWIFT_VERSION: "5.0"
+    CODE_SIGN_STYLE: Automatic
+    ENABLE_USER_SCRIPT_SANDBOXING: NO
+
+packages:
+  # libmpv build for Apple platforms (LGPL-3.0 fork of mpvkit/MPVKit).
+  # Pinned on purpose — bump deliberately, never automatically.
+  MPVKit:
+    url: https://github.com/NuvioMedia/MPVKit.git
+    exactVersion: 0.41.0-n8.1.2-nuvio.5
+
+  # --- nuvio-engine (torrent + streaming core, GPL-3.0-or-later) -----------
+  # Local package, materialised by scripts/build-apple.sh:
+  #   ios/Vendor/nuvio-engine/platform/apple/NuvioEngine.xcframework
+  NuvioEngine:
+    path: Vendor/nuvio-engine/platform/apple
+
+targets:
+  Sora:
+    type: application
+    platform: iOS
+    sources:
+      - path: Sources/Sora
+    info:
+      path: Sources/Sora/Info.plist
+      properties:
+        CFBundleDisplayName: Sora
+        CFBundleShortVersionString: $(MARKETING_VERSION)
+        CFBundleVersion: $(CURRENT_PROJECT_VERSION)
+        UILaunchScreen: {}
+        UISupportedInterfaceOrientations:
+          - UIInterfaceOrientationPortrait
+          - UIInterfaceOrientationLandscapeLeft
+          - UIInterfaceOrientationLandscapeRight
+        UISupportedInterfaceOrientations~ipad:
+          - UIInterfaceOrientationPortrait
+          - UIInterfaceOrientationPortraitUpsideDown
+          - UIInterfaceOrientationLandscapeLeft
+          - UIInterfaceOrientationLandscapeRight
+        UIApplicationSceneManifest:
+          UIApplicationSupportsMultipleScenes: false
+        # nuvio-engine serves the selected file over loopback HTTP.
+        NSAppTransportSecurity:
+          NSAllowsLocalNetworking: true
+        NSLocalNetworkUsageDescription: >-
+          Sora memakai server lokal di perangkat ini untuk memutar file yang
+          kamu pilih. Tidak ada koneksi ke perangkat lain.
+    settings:
+      base:
+        PRODUCT_BUNDLE_IDENTIFIER: app.sora.ios
+        TARGETED_DEVICE_FAMILY: "1,2"
+    dependencies:
+      - package: MPVKit
+        product: MPVKit
+      - package: NuvioEngine
+        product: NuvioEngine

@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="app_name">Sora</string>
+    <string name="action_play">Putar</string>
+    <string name="input_hint">magnet:?xt=… atau https://…</string>
+    <string name="status_idle">Tempel magnet atau URL file video.</string>
+    <string name="status_need_input">Isi magnet atau URL dulu.</string>
+    <string name="status_failed">Gagal: %1$s</string>
+    <string name="status_fetching_metadata">Mengambil metadata torrent…</string>
+    <string name="status_picking_file">Memilih file video…</string>
+    <string name="status_preparing">Menyiapkan stream: %1$s</string>
+    <string name="status_playing">Memutar %1$s</string>
+    <string name="status_direct_url">Memutar URL langsung</string>
+    <string name="status_starting_engine">Menyalakan engine (versi %1$s)…</string>
+</resources>

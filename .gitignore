@@ -1,0 +1,60 @@
+# Build output
+build/
+**/build/
+*.apk
+*.aab
+*.ipa
+*.app
+*.exe
+*.dll
+*.lib
+*.so
+*.a
+*.o
+*.obj
+*.pdb
+
+# Gradle / Android
+.gradle/
+local.properties
+android/.idea/
+android/app/libs/*.aar
+android/app/src/main/jniLibs/
+captures/
+
+# Xcode / SwiftPM
+ios/Sora.xcodeproj/
+ios/Vendor/
+ios/build/
+DerivedData/
+.swiftpm/
+Package.resolved
+
+# CMake / Visual Studio
+CMakeCache.txt
+CMakeFiles/
+cmake-build-*/
+out/
+.vs/
+windows/build/
+
+# Upstream sources cloned by scripts/fetch-deps.sh
+vendor/
+
+# Local env and secrets
+.env
+.env.*
+!.env.example
+*.keystore
+*.jks
+*.p12
+
+# Editor / OS
+.idea/
+.vscode/
+.DS_Store
+Thumbs.db
+*.swp
+
+# Engine runtime data if someone points it at the repo
+*.nuvio-cache/
