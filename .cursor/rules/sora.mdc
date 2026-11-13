@@ -1,0 +1,46 @@
+---
+description: Sora player — invariants Cursor must keep in every session
+alwaysApply: true
+---
+
+# Sora — aturan sesi
+
+Sora adalah pemutar video native (Android/iOS/Windows) di atas Nuvio stack.
+Repo ini scaffold dan belum pernah dikompilasi penuh. Prompt kerja lengkap ada di
+`PROMPT_CURSOR.md`; urutan tugas di `docs/ROADMAP.md`.
+
+## Konten
+
+- Tidak ada katalog, addon, scraper, atau integrasi situs streaming. Jangan pernah
+  menambahkannya, termasuk sebagai contoh atau data demo.
+- Input hanya magnet atau URL yang diberikan pengguna.
+
+## Lisensi
+
+- App = GPL-3.0 karena menautkan `nuvio-engine`. Jangan menambah dependensi yang
+  melarang relink/source disclosure.
+- Jangan hapus/ubah `LICENSE`, `THIRD_PARTY.md`, atau NOTICE upstream.
+- Celah lisensi `nuvio-libass` (tanpa file LICENSE) harus diselesaikan sebelum
+  distribusi Android — lihat `THIRD_PARTY.md`.
+
+## Sumber kebenaran
+
+- API: `vendor/` (hasil `scripts/fetch-deps.sh`), bukan tebakan. Kalau signature di
+  repo berbeda, perbaiki pemanggilnya.
+- Versi toolchain: baca file upstream yang menetapkannya sebelum mengubah apa pun.
+- Batasan host: engine Android hanya dibangun di Darwin/Linux (WSL2), paket Windows
+  lewat Docker, iOS hanya di macOS.
+
+## Repo
+
+- Jangan commit `vendor/`, `build/`, `*.aar`, `*.apk`, `*.xcframework`, `*.dll`,
+  secret, atau path absolut.
+- Jangan force push atau menulis ulang history.
+- Perubahan kecil dan terfokus; satu milestone per rangkaian commit.
+
+## Kejujuran
+
+- Jangan menulis "build berhasil" tanpa output perintahnya di sesi ini.
+- Kalau toolchain tidak ada, catat yang hilang dan kerjakan bagian yang bisa
+  diverifikasi.
+- Komentar kode bahasa Inggris; string UI bahasa Indonesia.

@@ -51,6 +51,8 @@ windows/                CMake + Win32 shell
   src/main.cpp          libmpv via LoadLibrary, engine via its C API
 scripts/                fetch-deps, build-android, build-apple, build-windows
 docs/                   ARCHITECTURE.md, BUILD.md, ROADMAP.md
+PROMPT_CURSOR.md        prompt kerja untuk Cursor AI
+.cursor/rules/          aturan yang dibaca Cursor otomatis
 vendor/                 cloned upstream sources (ignored by git)
 ```
 
@@ -75,6 +77,13 @@ scripts\build-windows.ps1 -BuildEngine -MpvDll C:\tools\mpv\mpv-2.dll
 Exact SDK/NDK/CMake versions and the known blockers are in
 [`docs/BUILD.md`](docs/BUILD.md). Read the "why the engine cannot be built on
 Windows" section before filing a build bug.
+
+## Working on it with Cursor
+
+[`PROMPT_CURSOR.md`](PROMPT_CURSOR.md) holds the copy-paste prompt for Cursor
+AI: role, hard rules, environment limits, and the Milestone 0 task order.
+`.cursor/rules/sora.mdc` applies the short version automatically in every
+session.
 
 ## What Sora is not
 
